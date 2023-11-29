@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelit</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <h1>Pelilista</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nimi</th>
+                <th>Genre</th>
+                <th>Linkki</th>
+                <th>Toiminto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="peli : ${pelit}">
+                <td th:text="${peli.peliId}"></td>
+                <td th:text="${peli.nimi}"></td>
+                <td th:text="${peli.genre}"></td>
+                <td>
+                    <a th:href="${peli.linkki}" target="_blank">Linkki peliin</a>
+                </td>
+                <td>
+                    <a th:href="@{/delete(peliId=${peli.peliId})}" class="btn btn-danger">Poista</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/addpeli">Lisää uusi peli</a>
+</body>
+</html>
